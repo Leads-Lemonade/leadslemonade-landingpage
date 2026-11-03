@@ -29,6 +29,7 @@ const CTASection = () => {
         </p>
         <Link
           href={ctaHref("final-cta")}
+          aria-label="Get started with LeadsLemonade for free"
           className="inline-block px-8 py-4 font-medium text-lg transition-opacity hover:opacity-90"
           style={{
             background: "var(--color-accent)",
