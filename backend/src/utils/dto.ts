@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, type Category } from "@prisma/client";
 
 /**
  * Shape a single BlogPost (with its category) into the SEO response
@@ -88,7 +88,7 @@ export function toCategoryDTO(category: CategoryWithCount): CategoryDTO {
   };
 }
 
-type CategoryPlain = Prisma.CategoryGetPayload<{}>;
+type CategoryPlain = Category;
 
 export function toCategoryDTOSimple(category: CategoryPlain): CategoryDTO {
   return {

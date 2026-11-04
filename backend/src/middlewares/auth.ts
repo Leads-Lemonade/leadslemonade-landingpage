@@ -3,6 +3,7 @@ import { env } from "../config/env";
 import { getUserFromSession, type AuthUser } from "../services/auth.service";
 import { ApiError } from "../utils/ApiError";
 
+// eslint-disable-next-line @typescript-eslint/no-namespace -- Express type augmentation requires namespace merging
 declare global { namespace Express { interface Request { authUser?: AuthUser; } } }
 
 export function readCookie(req: Request, name: string): string | undefined {

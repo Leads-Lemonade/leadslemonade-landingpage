@@ -43,6 +43,7 @@ export default function BlogPageClient() {
     const category = categories.find(
       (item) => item.slug === categoryQuery || item.name === categoryQuery,
     );
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs URL param once categories load; moving it would change behavior
     if (category) setActiveCategory(category.name);
   }, [categories, searchParams]);
 
@@ -63,6 +64,7 @@ export default function BlogPageClient() {
   useEffect(() => {
     const controller = new AbortController();
     const sequence = ++requestSequence.current;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- loading reset must run on every fetch; moving it would change behavior
     setStatus("loading");
     setError(null);
     const selectedCategory = categories.find(
