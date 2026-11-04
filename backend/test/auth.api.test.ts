@@ -17,7 +17,7 @@ async function request(path: string, init: RequestInit = {}) {
   const headers = new Headers(init.headers);
   if (cookie) headers.set("cookie", cookie);
   const response = await fetch(`${baseUrl}${path}`, { ...init, headers });
-  return { response, body: (await response.json()) as Record<string, any> };
+  return { response, body: (await response.json()) as Record<string, unknown> };
 }
 function json(body: Record<string, unknown>): RequestInit { return { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }; }
 
