@@ -11,7 +11,7 @@ if (!testDatabaseUrl) {
   );
 }
 
-type JsonObject = Record<string, any>;
+type JsonObject = Record<string, unknown>;
 
 const prefix = `api-regression-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 const categorySlug = `${prefix}-category`;
