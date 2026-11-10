@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap, useGSAP, reduced } from "@/lib/gsap";
 import { ctaHref, SEARCH_HREF } from "@/lib/cta";
 import AnatomySlot from "@/components/sections/AnatomySlot";
+import Verifier from "@/components/figures/Verifier";
 
 type Demo = {
   query: string;
@@ -79,7 +80,9 @@ export default function Hero({ titleLines, sub, primary, secondary, demo, figure
 
           <div className="hero-slot mx-auto mt-14 grid w-full max-w-[1200px] items-center gap-8 px-[var(--pad,24px)] md:grid-cols-12">
             <div className="md:col-span-5">
-              <AnatomySlot />
+              <AnatomySlot>
+                <Verifier />
+              </AnatomySlot>
             </div>
             <div className="md:col-span-7">
               <h2 className="text-[20px] font-semibold">{figure.title}</h2>
