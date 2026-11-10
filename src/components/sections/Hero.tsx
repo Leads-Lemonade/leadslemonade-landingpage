@@ -33,12 +33,14 @@ export default function Hero({ titleLines, sub, primary, secondary, demo }: Hero
         gsap.set(section, { height: "auto" });
         gsap.set(".hero-stick", { position: "static", height: "auto", overflow: "visible" });
         gsap.set(".hero-panel", { width: "100%" });
+        gsap.set(".hero-ph", { display: "none" });
         return;
       }
       gsap.from(".ln > span", { yPercent: 135, duration: 1.4, stagger: 0.1, ease: "expo.out" });
       gsap.from(".hero-sub, .hero-cta", { y: 14, opacity: 0, duration: 1.2, stagger: 0.08, ease: "expo.out", delay: 0.4, clearProps: "transform" });
 
       const inner = section.querySelector<HTMLElement>(".hero-inner")!;
+      const panelWrap = section.querySelector<HTMLElement>(".hero-panel-wrap")!;
 
       gsap
         .timeline({
@@ -46,10 +48,15 @@ export default function Hero({ titleLines, sub, primary, secondary, demo }: Hero
           scrollTrigger: { trigger: section, start: "top top", end: "bottom bottom", scrub: 0.6, invalidateOnRefresh: true },
         })
         .to(".hero-head", { y: -24, opacity: 0.25, duration: 0.3 }, 0.05)
-        .to(inner, { y: () => Math.min(0, innerHeight - (inner.offsetHeight + 0.12 * innerHeight + 24)), duration: 0.5 }, 0.15)
-        .fromTo(".hero-panel", { width: "72%" }, { width: "100%", duration: 0.4 }, 0.2)
-        .from(".hero-row", { opacity: 0, y: 10, duration: 0.1, stagger: 0.07 }, 0.4)
-        .from(".hero-foot", { opacity: 0, y: 8, duration: 0.08 }, ">");
+        .to(inner, { y: () => Math.min(0, -(panelWrap.offsetTop + panelWrap.offsetHeight - innerHeight + 24)), duration: 0.5 }, 0.05)
+        .from(".hero-ch", { opacity: 0, duration: 0.05, stagger: { amount: 0.2 }, immediateRender: true }, 0.1)
+        .fromTo(".hero-ph", { opacity: 1 }, { opacity: 0, duration: 0.02, immediateRender: true }, 0.1)
+        .from(".hero-chip", { opacity: 0, y: 6, duration: 0.04, stagger: 0.04, immediateRender: true }, 0.36)
+        .from(".hero-status", { opacity: 0, duration: 0.12, immediateRender: true }, 0.48)
+        .fromTo(".hero-panel", { width: "72%" }, { width: "100%", duration: 0.22 }, 0.48)
+        .from(".hero-thead", { opacity: 0, duration: 0.05, immediateRender: true }, 0.62)
+        .from(".hero-row", { opacity: 0, y: 10, duration: 0.05, stagger: 0.05, immediateRender: true }, 0.64)
+        .from(".hero-foot", { opacity: 0, y: 8, duration: 0.05, immediateRender: true }, 0.8);
     },
     { scope: ref }
   );
@@ -58,8 +65,16 @@ export default function Hero({ titleLines, sub, primary, secondary, demo }: Hero
 
   return (
     <section ref={ref} id="hero" aria-labelledby="hero-h" className="relative h-[240vh] md:h-[300vh]">
+      <style>{`
+        #hero { --peek: 72px; }
+        @media (min-width: 1024px) { #hero { --peek: 96px; } }
+        .hero-top { min-height: calc(100vh - var(--peek) - 12vh); }
+        .hero-caret { display:inline-block; width:1px; height:1.1em; margin-left:2px; background:var(--color-ink); vertical-align:text-bottom; animation:hero-blink 1.1s steps(1) infinite; }
+        @keyframes hero-blink { 50% { opacity:0 } }
+        @media (prefers-reduced-motion: reduce) { .hero-caret { animation:none } }
+      `}</style>
       <div className="hero-stick sticky top-0 h-screen overflow-hidden">
-        <div className="hero-inner pt-[12vh]">
+        <div className="hero-inner flex flex-col pt-[12vh]">
           <div className="hero-top mx-auto grid w-full max-w-[1200px] items-center gap-10 px-[var(--pad,24px)] lg:grid-cols-12">
             <div className="hero-head lg:col-span-6">
               <h1 id="hero-h" className="text-[clamp(34px,5vw,56px)] font-semibold leading-[1.05] tracking-[-0.02em]">
@@ -80,23 +95,33 @@ export default function Hero({ titleLines, sub, primary, secondary, demo }: Hero
             </div>
           </div>
 
-          <div className="mx-auto mt-14 w-full max-w-[1200px] px-[var(--pad,24px)]">
+          <div className="hero-panel-wrap mx-auto mt-0 w-full max-w-[1200px] px-[var(--pad,24px)]">
             <div
               className="hero-panel mx-auto rounded-[var(--radius-card)] border border-[var(--color-rule)] bg-[var(--color-card)] [box-shadow:var(--shadow-lift)]"
               style={{ width: "72%" }}
             >
-              <p className="border-b border-[var(--color-rule)] px-4 py-3 text-[16px]">{demo.query}</p>
+              <p className="relative flex items-center border-b border-[var(--color-rule)] px-4 py-3 text-[16px]">
+                <span className="hero-q">
+                  {demo.query.split("").map((ch, k) => (
+                    <span key={k} className="hero-ch">{ch}</span>
+                  ))}
+                </span>
+                <span className="hero-caret" aria-hidden="true" />
+                <span className="hero-ph mono absolute left-4 text-[12px] text-[var(--color-muted)]" style={{ opacity: 0 }} aria-hidden="true">
+                  Describe who you want
+                </span>
+              </p>
               <div className="flex flex-wrap gap-2 px-4 pt-3 pb-1">
                 {demo.filters.map((f) => (
-                  <span key={f} className="mono rounded-[var(--radius-ctl,4px)] border border-[var(--color-rule)] bg-[var(--color-paper-2)] px-2 py-0.5 text-[12px]">
+                  <span key={f} className="hero-chip mono rounded-[var(--radius-ctl,4px)] border border-[var(--color-rule)] bg-[var(--color-paper-2)] px-2 py-0.5 text-[12px]">
                     {f}
                   </span>
                 ))}
               </div>
-              <p className="mono px-4 py-2 text-[12px] text-[var(--color-muted)]">{demo.status}</p>
+              <p className="hero-status mono px-4 py-2 text-[12px] text-[var(--color-muted)]">{demo.status}</p>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[640px] border-collapse text-left">
-                  <thead>
+                  <thead className="hero-thead">
                     <tr>
                       {demo.columns.map((c) => (
                         <th key={c} className="mono border-y border-[var(--color-rule)] px-4 py-2 text-[11px] font-medium whitespace-nowrap text-[var(--color-muted)]">
