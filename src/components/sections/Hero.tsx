@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { gsap, useGSAP, reduced } from "@/lib/gsap";
 import { ctaHref, SEARCH_HREF } from "@/lib/cta";
-import AnatomySlot from "@/components/sections/AnatomySlot";
 import Verifier from "@/components/figures/Verifier";
 
 type Demo = {
@@ -22,10 +21,9 @@ type HeroProps = {
   primary: string;
   secondary: string;
   demo: Demo;
-  figure: { title: string; body: string };
 };
 
-export default function Hero({ titleLines, sub, primary, secondary, demo, figure }: HeroProps) {
+export default function Hero({ titleLines, sub, primary, secondary, demo }: HeroProps) {
   const ref = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -47,8 +45,7 @@ export default function Hero({ titleLines, sub, primary, secondary, demo, figure
           defaults: { ease: "none" },
           scrollTrigger: { trigger: section, start: "top top", end: "bottom bottom", scrub: 0.6, invalidateOnRefresh: true },
         })
-        .fromTo(".hero-slot", { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.2 }, 0)
-        .to(".hero-head", { y: -32, opacity: 0.25, duration: 0.3 }, 0.05)
+        .to(".hero-head", { y: -24, opacity: 0.25, duration: 0.3 }, 0.05)
         .to(inner, { y: () => Math.min(0, innerHeight - (inner.offsetHeight + 0.12 * innerHeight + 24)), duration: 0.5 }, 0.15)
         .fromTo(".hero-panel", { width: "72%" }, { width: "100%", duration: 0.4 }, 0.2)
         .from(".hero-row", { opacity: 0, y: 10, duration: 0.1, stagger: 0.07 }, 0.4)
@@ -63,30 +60,23 @@ export default function Hero({ titleLines, sub, primary, secondary, demo, figure
     <section ref={ref} id="hero" aria-labelledby="hero-h" className="relative h-[240vh] md:h-[300vh]">
       <div className="hero-stick sticky top-0 h-screen overflow-hidden">
         <div className="hero-inner pt-[12vh]">
-          <div className="hero-head mx-auto w-full max-w-[1200px] px-[var(--pad,24px)] text-center">
-            <h1 id="hero-h" className="text-[clamp(34px,6vw,64px)] font-semibold leading-[1.05] tracking-[-0.02em]">
-              {titleLines.map((l) => (
-                <span key={l} className="ln">
-                  <span>{l}</span>
-                </span>
-              ))}
-            </h1>
-            <p className="hero-sub mx-auto mt-5 max-w-[560px] text-[15px] leading-relaxed text-[var(--color-ink-2)]">{sub}</p>
-            <div className="hero-cta mt-7 flex flex-wrap items-center justify-center gap-3">
-              <a className="btn-primary" href={ctaHref("hero")}>{primary}</a>
-              <a className="btn-secondary" href={SEARCH_HREF}>{secondary}</a>
+          <div className="hero-top mx-auto grid w-full max-w-[1200px] items-center gap-10 px-[var(--pad,24px)] lg:grid-cols-12">
+            <div className="hero-head lg:col-span-6">
+              <h1 id="hero-h" className="text-[clamp(34px,5vw,56px)] font-semibold leading-[1.05] tracking-[-0.02em]">
+                {titleLines.map((l) => (
+                  <span key={l} className="ln">
+                    <span>{l}</span>
+                  </span>
+                ))}
+              </h1>
+              <p className="hero-sub mt-5 max-w-[560px] text-[15px] leading-relaxed text-[var(--color-ink-2)]">{sub}</p>
+              <div className="hero-cta mt-7 flex flex-wrap items-center gap-3">
+                <a className="btn-primary" href={ctaHref("hero")}>{primary}</a>
+                <a className="btn-secondary" href={SEARCH_HREF}>{secondary}</a>
+              </div>
             </div>
-          </div>
-
-          <div className="hero-slot mx-auto mt-14 grid w-full max-w-[1200px] items-center gap-8 px-[var(--pad,24px)] md:grid-cols-12">
-            <div className="md:col-span-5">
-              <AnatomySlot>
-                <Verifier />
-              </AnatomySlot>
-            </div>
-            <div className="md:col-span-7">
-              <h2 className="text-[20px] font-semibold">{figure.title}</h2>
-              <p className="mt-3 max-w-[480px] text-[14px] leading-relaxed text-[var(--color-ink-2)]">{figure.body}</p>
+            <div className="mx-auto w-full max-w-[480px] lg:col-span-6 lg:mr-0 lg:ml-auto lg:max-w-[560px]">
+              <Verifier />
             </div>
           </div>
 
