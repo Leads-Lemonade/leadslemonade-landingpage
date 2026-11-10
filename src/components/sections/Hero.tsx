@@ -42,6 +42,14 @@ export default function Hero({ titleLines, sub, primary, secondary, demo }: Hero
       const inner = section.querySelector<HTMLElement>(".hero-inner")!;
       const panelWrap = section.querySelector<HTMLElement>(".hero-panel-wrap")!;
 
+      // Initial state set once, explicitly; scrub tweens only ever go toward the final markup state.
+      gsap.set(".hero-ch, .hero-status, .hero-thead", { opacity: 0 });
+      gsap.set(".hero-chip", { opacity: 0, y: 6 });
+      gsap.set(".hero-row", { opacity: 0, y: 10 });
+      gsap.set(".hero-foot", { opacity: 0, y: 8 });
+      gsap.set(".hero-ph", { opacity: 1 });
+      gsap.set(".hero-panel", { width: "72%" });
+
       gsap
         .timeline({
           defaults: { ease: "none" },
@@ -49,14 +57,14 @@ export default function Hero({ titleLines, sub, primary, secondary, demo }: Hero
         })
         .to(".hero-head", { y: -24, opacity: 0.25, duration: 0.3 }, 0.05)
         .to(inner, { y: () => Math.min(0, -(panelWrap.offsetTop + panelWrap.offsetHeight - innerHeight + 24)), duration: 0.5 }, 0.05)
-        .from(".hero-ch", { opacity: 0, duration: 0.05, stagger: { amount: 0.2 }, immediateRender: true }, 0.1)
-        .fromTo(".hero-ph", { opacity: 1 }, { opacity: 0, duration: 0.02, immediateRender: true }, 0.1)
-        .from(".hero-chip", { opacity: 0, y: 6, duration: 0.04, stagger: 0.04, immediateRender: true }, 0.36)
-        .from(".hero-status", { opacity: 0, duration: 0.12, immediateRender: true }, 0.48)
-        .fromTo(".hero-panel", { width: "72%" }, { width: "100%", duration: 0.22 }, 0.48)
-        .from(".hero-thead", { opacity: 0, duration: 0.05, immediateRender: true }, 0.62)
-        .from(".hero-row", { opacity: 0, y: 10, duration: 0.05, stagger: 0.05, immediateRender: true }, 0.64)
-        .from(".hero-foot", { opacity: 0, y: 8, duration: 0.05, immediateRender: true }, 0.8);
+        .to(".hero-ch", { opacity: 1, duration: 0.05, stagger: { amount: 0.2 } }, 0.1)
+        .to(".hero-ph", { opacity: 0, duration: 0.02 }, 0.1)
+        .to(".hero-chip", { opacity: 1, y: 0, duration: 0.04, stagger: 0.04 }, 0.36)
+        .to(".hero-status", { opacity: 1, duration: 0.12 }, 0.48)
+        .to(".hero-panel", { width: "100%", duration: 0.22 }, 0.48)
+        .to(".hero-thead", { opacity: 1, duration: 0.05 }, 0.62)
+        .to(".hero-row", { opacity: 1, y: 0, duration: 0.05, stagger: 0.05 }, 0.64)
+        .to(".hero-foot", { opacity: 1, y: 0, duration: 0.05 }, 0.8);
     },
     { scope: ref }
   );
