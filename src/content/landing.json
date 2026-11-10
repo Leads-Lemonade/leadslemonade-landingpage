@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "items": [
+      { "id": "how", "label": "How it works" },
+      { "id": "why", "label": "Why" },
+      { "id": "data", "label": "Data" },
+      { "id": "pricing", "label": "Pricing" }
+    ],
+    "cta": "Buy 100 credits ($5)"
+  },
+  "hero": {
+    "titleLines": ["Only pay for", "verified emails.", "Credits never expire."],
+    "sub": "B2B lead finder for outbound sellers who left Apollo and Hunter over price. Search is free. One credit reveals one verified email. $5 for 100 credits, one-time.",
+    "primary": "Buy 100 credits ($5)",
+    "secondary": "Search free",
+    "demo": {
+      "query": "Head of Sales, Indonesia, 11 to 50 employees",
+      "filters": ["Title: Head of Sales", "Person location: Indonesia", "Company size: 11 to 50"],
+      "status": "52 in cache · fetching more",
+      "columns": ["Name", "Title", "Company", "Email", "Status"],
+      "rows": [
+        ["A. Lim", "Head of Sales", "Merlion Works", "a.lim@merlionworks.example", "Verified"],
+        ["R. Ma", "Head of Sales", "Nusa Fintech", "r.ma@nusafintech.example", "Verified"],
+        ["D. Putri", "Head of Sales", "Kopi Labs", "Hidden until reveal", "Unverified"],
+        ["F. Tan", "Head of Sales", "Serai Logistics", "f.tan@serai.example", "Verified"]
+      ],
+      "footer": "1 to 4 of 52 · Reveal selected (3 credits)",
+      "note": "Sample rows. Not real people."
+    },
+    "figure": {
+      "title": "One credit, one verified email",
+      "body": "Search free. Pick a row. We verify the address before the credit leaves your balance; if it bounces later the credit comes back."
+    }
+  },
+  "how": {
+    "index": "02",
+    "title": "How it works",
+    "stage": {
+      "url": "leadslemonade.com/search",
+      "applied": "Applied",
+      "reveal": "Reveal (1 credit)",
+      "credits": "Credits 100 to 99",
+      "export": "Export CSV"
+    },
+    "steps": [
+      { "label": "Describe", "title": "Say who you want", "body": "Type it plain: \"Head of Sales at fintech companies in Jakarta, 11 to 50 people.\" Filters fill in from your words." },
+      { "label": "Filter", "title": "Only filters the data can honor", "body": "Title, seniority, function, person location, industry, company size. No intent, no lookalikes, no technologies. If we cannot filter it, we do not show the filter." },
+      { "label": "Results", "title": "Search is free", "body": "Rows come from our verified cache first, then a live fetch for the shortfall. You see the real count: \"52 in cache · fetching more\". No inflated match numbers." },
+      { "label": "Reveal", "title": "Reveal (1 credit)", "body": "Each email is verified before it is charged. Unverified rows stay visible and exportable without email, never billed." },
+      { "label": "Export", "title": "Export CSV", "body": "Paste into Instantly, Lemlist, or HubSpot. A revealed lead is yours forever; revealing it again costs nothing." }
+    ]
+  },
+  "why": {
+    "index": "03",
+    "title": "Why people switch",
+    "cards": [
+      { "n": "01", "title": "Verified before you pay", "body": "We check the email before the credit leaves your balance. If it bounces later, the credit comes back automatically.", "figure": "1 credit = 1 verified email" },
+      { "n": "02", "title": "No subscription. No seats. No expiry.", "body": "$5 buys 100 credits, one-time. They sit in your account until you use them. No monthly plan required, no per-seat tax for your team.", "figure": "$5 / 100 credits" },
+      { "n": "03", "title": "Owned forever", "body": "A revealed lead never costs again. Search it next month, next year; it is still yours at zero credits.", "figure": "Re-reveal: 0 credits" }
+    ]
+  },
+  "data": {
+    "index": "04",
+    "title": "What a lead contains",
+    "intro": "We publish fill rates instead of promising fields we cannot deliver.",
+    "sampleLine": "Sample: 20 rows, Head of Sales, Indonesia, 11 to 50 employees",
+    "panelHead": ["Field", "Fill rate", "Sample"],
+    "fields": [
+      { "name": "Work email", "fill": 20, "of": 20 },
+      { "name": "LinkedIn URL", "fill": 20, "of": 20 },
+      { "name": "Industry, company size, seniority, function", "fill": 20, "of": 20 },
+      { "name": "Company technologies", "fill": 18, "of": 20 },
+      { "name": "Company domain", "fill": 17, "of": 20 },
+      { "name": "City", "fill": 15, "of": 20 },
+      { "name": "Company phone", "fill": 7, "of": 20 },
+      { "name": "Personal email", "fill": 5, "of": 20 }
+    ],
+    "notProvided": "Not provided: mobile numbers, revenue, funding. Coverage excludes EU and UK contacts.",
+    "caveats": [
+      "Headline can differ from title when a person has moved. We show both and flag it.",
+      "Location filter is the person's location, not company HQ."
+    ]
+  },
+  "compare": {
+    "index": "05",
+    "title": "Honest comparison",
+    "intro": "We are not the cheapest per credit. We are the one that does not charge for bounces and does not expire what you bought.",
+    "columns": ["", "Cheapest paid tier", "Per credit", "Credits expire", "Charged on bounce"],
+    "rows": [
+      ["Hunter", "$49 / 2,000", "$0.0245", "Monthly", "Yes"],
+      ["Snov.io", "$29.25 / 1,000", "$0.029", "Yes", "Yes"],
+      ["Lusha", "$49.90 / 400", "$0.125", "Yes", "Yes"],
+      ["LeadsLemonade", "$5 / 100", "$0.05", "Never", "No, refunded"]
+    ],
+    "source": "Public pricing pages, Nov 10, 2026. Re-verify before you rely on it."
+  },
+  "pricing": {
+    "index": "06",
+    "title": "Pricing",
+    "intro": "Three ways to buy. All credits are verified-only and never expire.",
+    "tiers": [
+      { "plan": "micro", "name": "Micro Squeeze", "price": "$5", "unit": "one-time", "per": "$0.05 per credit", "lines": ["100 credits", "Never expire", "Verified before charge", "Bounce refund"], "cta": "Buy 100 credits", "featured": true },
+      { "plan": "monthly", "name": "Fresh Monthly", "price": "$29.90", "unit": "per month", "per": "$0.03 per credit", "lines": ["1,000 credits each month", "Unused credits roll over", "Cancel any time", "Top-ups at $4 per 100"], "cta": "Start monthly", "featured": false },
+      { "plan": "topup", "name": "Top-up", "price": "$4", "unit": "per 100", "per": "$0.04 per credit", "lines": ["Add to any balance", "Never expire", "Same verification"], "cta": "Add credits", "featured": false }
+    ]
+  },
+  "trust": {
+    "index": "07",
+    "title": "Where the data comes from",
+    "items": [
+      { "title": "Source", "body": "Public professional profiles and company websites, collected through a third-party data provider and verified by us before any charge." },
+      { "title": "Coverage", "body": "EU and UK contacts are excluded. We only serve regions where we can meet our data obligations today." },
+      { "title": "Retention", "body": "Personal fields are purged 12 months after collection. Cached leads older than 90 days are re-checked before reveal." },
+      { "title": "Removal", "body": "Anyone can ask to be removed. Suppressed contacts never appear again, for any customer." }
+    ],
+    "links": [
+      { "label": "Privacy policy", "href": "/privacy-policy" },
+      { "label": "Terms of service", "href": "/terms-of-service" }
+    ]
+  },
+  "cta": {
+    "title": "Buy 100 credits. They never expire.",
+    "sub": "$5, one-time. Search as much as you like first.",
+    "primary": "Buy 100 credits ($5)",
+    "secondary": "Search free"
+  },
+  "footer": {
+    "tagline": "Verified B2B emails. Pay per reveal. Credits never expire.",
+    "columns": [
+      { "title": "Product", "links": [{ "label": "How it works", "href": "#how" }, { "label": "Pricing", "href": "#pricing" }, { "label": "Data", "href": "#data" }] },
+      { "title": "Company", "links": [{ "label": "Blog", "href": "/blog" }, { "label": "Contact", "href": "/contact" }] },
+      { "title": "Legal", "links": [{ "label": "Privacy policy", "href": "/privacy-policy" }, { "label": "Terms of service", "href": "/terms-of-service" }] }
+    ],
+    "legal": "LeadsLemonade. All rights reserved."
+  }
+}
