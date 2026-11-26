@@ -1,24 +1,29 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import HeroSection from "@/components/sections/HeroSection";
-import LiveDeepSearchSection from "@/components/sections/LiveDeepSearchSection";
-import FeaturesSection from "@/components/sections/FeaturesSection";
-import CalculatorSection from "@/components/sections/CalculatorSection";
-import PricingSection from "@/components/sections/PricingSection";
-import CTASection from "@/components/sections/CTASection";
-import { Analytics } from "@vercel/analytics/next"
+import Hero from "@/components/sections/Hero";
+import HowItWorks from "@/components/sections/HowItWorks";
+import Why from "@/components/sections/Why";
+import DataSection from "@/components/sections/DataSection";
+import Compare from "@/components/sections/Compare";
+import Pricing from "@/components/sections/Pricing";
+import Trust from "@/components/sections/Trust";
+import FinalCta from "@/components/sections/FinalCta";
+import { Analytics } from "@vercel/analytics/next";
+import landing from "@/content/landing.json";
 
 export default function HomePage() {
   return (
     <>
       <Navbar />
       <main>
-        <HeroSection />
-        <LiveDeepSearchSection />
-        <FeaturesSection />
-        <CalculatorSection />
-        <PricingSection />
-        <CTASection />
+        <Hero {...landing.hero} />
+        <HowItWorks {...landing.how} demo={landing.hero.demo} />
+        <Why {...landing.why} />
+        <DataSection {...landing.data} />
+        <Compare {...landing.compare} />
+        <Pricing {...landing.pricing} />
+        <Trust {...landing.trust} />
+        <FinalCta {...landing.cta} />
       </main>
       <Footer />
       <Analytics />
